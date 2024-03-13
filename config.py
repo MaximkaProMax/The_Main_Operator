@@ -1,1 +1,0 @@
-TOKEN = '7167269613:AAFhVjeAOyUWNVSn2SAcM9lnEJ5OpAghJ_g' #Токен из BotFather

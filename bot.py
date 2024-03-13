@@ -1,36 +1,10 @@
-import schedule
-import time
 import telebot
-import config
 
-# Создаем экземпляр бота
-bot = telebot.TeleBot(config.TOKEN)
+TOKEN = '7167269613:AAFhVjeAOyUWNVSn2SAcM9lnEJ5OpAghJ_g'
+bot = telebot.TeleBot(TOKEN)
 
-
-# Функция, которая будет выполняться каждый день в 7:15 утра
-def job():
-    # Отправляем сообщение в чат Telegram
-    bot.send_message(chat_id="your-chat-id",
-                     text="Коллеги, доброе утро!\nНиже отметьтесь в опросе о своем фактическом выезде на работу, выбрав пункт, на котором вы сегодня работаете.\nЕсли вы вдруг опаздываете, то ниже под опросом напишите: 'Тухачевского. Опаздываю на 15 минут.'\nЕсли за час до фактического открытия пункта вы не отпишитесь, то вам автоматически будет искаться замена.")
-
-    # Создаем опрос в чате Telegram
-    bot.send_poll(chat_id="your-chat-id",
-                  question="Отметьтесь в опросе о своем фактическом выезде на работу. (Если вы опаздываете, то отпишите ниже)",
-                  options=["Полежаевская - 09:00", "Кантемировская - 09:00"])
-
-
-# Запускаем функцию job каждый день в 7:15 утра
-schedule.every().day.at("07:15").do(job)
-
-
-# Обработчик команды /start
 @bot.message_handler(commands=['start'])
-def start_command(message):
-    job()
+def send_welcome(message):
+    bot.reply_to(message, "Привет, я бот! Как могу помочь?")
 
-
-while True:
-    # Запускаем все запланированные задачи
-    schedule.run_pending()
-    # Приостанавливаем выполнение скрипта на 1 секунду
-    time.sleep(1)
+bot.polling()
