@@ -7,11 +7,11 @@ TOKEN = '7167269613:AAFhVjeAOyUWNVSn2SAcM9lnEJ5OpAghJ_g'
 # Создание экземпляра бота с помощью токена
 bot = telebot.TeleBot(TOKEN)
 
-# Декоратор, который обрабатывает команду "/start"
+# Обработка команды "/start"
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     # Ответ на сообщение от пользователя
-    bot.reply_to(message, "Я Бот Мегумин, готова Вам помогать!!!")
+    bot.reply_to(message, "Привет, я бот, готов Вам помогать!!!")
 
-# Запуск бота для постоянного прослушивания входящих сообщений
+# Запуск бота для постоянной обработки входящих сообщений
 bot.polling()
